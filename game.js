@@ -10,7 +10,8 @@ const config = {
     pipeSpeed: 1.35,
     pipeGap: 180,
     pipeSpacing: 250,
-    birdSize: 68,
+    birdSize: 68,        // Visual size of the bird
+    birdHitboxSize: 46,  // Collision detection size (smaller to match visible area)
     pipeWidth: 60
 };
 
@@ -109,14 +110,14 @@ const bird = {
             // Calculate rotation based on velocity
             this.rotation = Math.min(Math.max(this.velocity * 3, -25), 90);
 
-            // Check boundaries
-            if (this.y + config.birdSize / 2 >= canvas.height) {
-                this.y = canvas.height - config.birdSize / 2;
+            // Check boundaries (using hitbox size for accurate collision)
+            if (this.y + config.birdHitboxSize / 2 >= canvas.height) {
+                this.y = canvas.height - config.birdHitboxSize / 2;
                 gameOver();
             }
 
-            if (this.y - config.birdSize / 2 <= 0) {
-                this.y = config.birdSize / 2;
+            if (this.y - config.birdHitboxSize / 2 <= 0) {
+                this.y = config.birdHitboxSize / 2;
                 this.velocity = 0;
             }
         }
@@ -268,10 +269,11 @@ function drawPipes() {
 }
 
 function checkCollision(pipe) {
-    const birdLeft = bird.x - config.birdSize / 2;
-    const birdRight = bird.x + config.birdSize / 2;
-    const birdTop = bird.y - config.birdSize / 2;
-    const birdBottom = bird.y + config.birdSize / 2;
+    // Use hitbox size for accurate collision (smaller than visual size)
+    const birdLeft = bird.x - config.birdHitboxSize / 2;
+    const birdRight = bird.x + config.birdHitboxSize / 2;
+    const birdTop = bird.y - config.birdHitboxSize / 2;
+    const birdBottom = bird.y + config.birdHitboxSize / 2;
 
     const pipeLeft = pipe.x;
     const pipeRight = pipe.x + config.pipeWidth;
