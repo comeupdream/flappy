@@ -11,7 +11,7 @@ const config = {
     pipeGap: 180,
     pipeSpacing: 250,
     birdSize: 68,        // Visual size of the bird
-    birdHitboxSize: 46,  // Collision detection size (smaller to match visible area)
+    birdHitboxSize: 30,  // Collision detection size (smaller to match visible area)
     pipeWidth: 60
 };
 
@@ -24,12 +24,12 @@ const assets = {
     imagesLoaded: false,
 
     load() {
-        // Attempt to load custom images (try both PNG and SVG)
+        // Attempt to load custom images (try PNG, JPG, and SVG)
         const imagesToLoad = [
             { key: 'bird', srcs: ['assets/images/bird.png', 'assets/images/bird.svg'] },
             { key: 'pipeTop', srcs: ['assets/images/pipe-top.png', 'assets/images/pipe-top.svg'] },
             { key: 'pipeBottom', srcs: ['assets/images/pipe-bottom.png', 'assets/images/pipe-bottom.svg'] },
-            { key: 'background', srcs: ['assets/images/background.png', 'assets/images/background.svg'] }
+            { key: 'background', srcs: ['assets/images/background.png', 'assets/images/background.jpg', 'assets/images/background.jpeg', 'assets/images/background.svg'] }
         ];
 
         let loadedCount = 0;
