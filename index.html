@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird Remake</title>
+    <title>FLAPPIPUPIL</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="game-container">
         <canvas id="gameCanvas" width="400" height="600"></canvas>
         <div id="startScreen" class="screen">
-            <h1>FLAPPY BIRD</h1>
+            <h1 class="colorful-title">FLAPPIPUPIL</h1>
             <p>Click or Press SPACE to Start</p>
             <p class="instructions">
                 Click or press SPACE to flap<br>
+                Press P to pause<br>
                 Avoid the pipes!
             </p>
+        </div>
+        <div id="pauseScreen" class="screen hidden">
+            <h1 class="colorful-title">PAUSED</h1>
+            <p>Press P to Resume</p>
         </div>
         <div id="gameOverScreen" class="screen hidden">
             <h1>GAME OVER</h1>

@@ -100,7 +100,7 @@ const assets = {
 
 // Game state
 const gameState = {
-    current: 'start', // 'start', 'playing', 'gameOver'
+    current: 'start', // 'start', 'playing', 'gameOver', 'paused'
     score: 0,
     highScore: localStorage.getItem('flappyHighScore') || 0,
     frames: 0
@@ -416,12 +416,31 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
+// Pause/Unpause function
+function togglePause() {
+    if (gameState.current === 'playing') {
+        // Pause the game
+        gameState.current = 'paused';
+        backgroundMusic.pause();
+        document.getElementById('pauseScreen').classList.remove('hidden');
+    } else if (gameState.current === 'paused') {
+        // Unpause the game
+        gameState.current = 'playing';
+        backgroundMusic.play();
+        document.getElementById('pauseScreen').classList.add('hidden');
+    }
+}
+
 // Event listeners
 document.addEventListener('click', () => bird.flap());
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
         e.preventDefault();
         bird.flap();
+    }
+    if (e.code === 'KeyP') {
+        e.preventDefault();
+        togglePause();
     }
 });
 
