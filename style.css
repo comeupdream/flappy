@@ -93,3 +93,15 @@ body {
     font-size: 24px;
     color: #90ee90;
 }
+
+.colorful-title {
+    font-size: 56px !important;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff69b4 0%, #ffd700 50%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none !important;
+    filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.7));
+    letter-spacing: 2px;
+}
