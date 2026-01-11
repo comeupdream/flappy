@@ -11,7 +11,7 @@ const config = {
     pipeGap: 180,
     pipeSpacing: 250,
     birdSize: 68,        // Visual size of the bird
-    birdHitboxSize: 46,  // Collision detection size (smaller to match visible area)
+    birdHitboxSize: 30,  // Collision detection size (smaller to match visible area)
     pipeWidth: 60
 };
 
