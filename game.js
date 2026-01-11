@@ -6,7 +6,7 @@ const ctx = canvas.getContext('2d');
 // Game configuration
 const config = {
     gravity: 0.045,
-    flapStrength: -9.75,
+    flapStrength: -3,
     pipeSpeed: 1.35,
     pipeGap: 180,
     pipeSpacing: 250,
