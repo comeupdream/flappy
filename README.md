@@ -1,6 +1,6 @@
-# FLAPPY BIRD REMAKE
+# FLAPPI PUPIL
 
-A fully functional Flappy Bird clone built with HTML5 Canvas and JavaScript. Designed to easily integrate your custom artwork!
+A fully functional FlappiPupil built with HTML5 Canvas and JavaScript. Designed to easily integrate your custom artwork!
 
 ## 🎮 Play Online
 
@@ -8,7 +8,7 @@ A fully functional Flappy Bird clone built with HTML5 Canvas and JavaScript. Des
 
 ## Features
 
-- Classic Flappy Bird gameplay with optimized physics
+- Classic Flappi PUPIL gameplay with optimized physics
 - Smooth controls with gentle gravity and responsive flapping
 - Score tracking with persistent local high score
 - Accurate collision detection with separate hitbox
