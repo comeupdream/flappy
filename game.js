@@ -10,7 +10,7 @@ const config = {
     pipeSpeed: 1.35,
     pipeGap: 180,
     pipeSpacing: 250,
-    birdSize: 34,
+    birdSize: 68,
     pipeWidth: 60
 };
 
