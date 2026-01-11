@@ -270,6 +270,7 @@ function drawPipes() {
 
         if (pipeColor && pipeColor.top && pipeColor.bottom && assets.imagesLoaded) {
             // Draw colored pipe images
+            // Top pipe
             ctx.drawImage(
                 pipeColor.top,
                 pipe.x,
@@ -277,12 +278,13 @@ function drawPipes() {
                 config.pipeWidth,
                 pipeColor.top.height
             );
+            // Bottom pipe - draw full height to maintain cap proportions
             ctx.drawImage(
                 pipeColor.bottom,
                 pipe.x,
                 pipe.bottomY,
                 config.pipeWidth,
-                canvas.height - pipe.bottomY
+                pipeColor.bottom.height
             );
         } else {
             // Draw default pipes
