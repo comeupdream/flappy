@@ -24,12 +24,12 @@ const assets = {
     imagesLoaded: false,
 
     load() {
-        // Attempt to load custom images (try both PNG and SVG)
+        // Attempt to load custom images (try PNG, JPG, and SVG)
         const imagesToLoad = [
             { key: 'bird', srcs: ['assets/images/bird.png', 'assets/images/bird.svg'] },
             { key: 'pipeTop', srcs: ['assets/images/pipe-top.png', 'assets/images/pipe-top.svg'] },
             { key: 'pipeBottom', srcs: ['assets/images/pipe-bottom.png', 'assets/images/pipe-bottom.svg'] },
-            { key: 'background', srcs: ['assets/images/background.png', 'assets/images/background.svg'] }
+            { key: 'background', srcs: ['assets/images/background.png', 'assets/images/background.jpg', 'assets/images/background.jpeg', 'assets/images/background.svg'] }
         ];
 
         let loadedCount = 0;
