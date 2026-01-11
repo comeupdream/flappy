@@ -23,34 +23,44 @@ const assets = {
     imagesLoaded: false,
 
     load() {
-        // Attempt to load custom images
+        // Attempt to load custom images (try both PNG and SVG)
         const imagesToLoad = [
-            { key: 'bird', src: 'assets/images/bird.png' },
-            { key: 'pipeTop', src: 'assets/images/pipe-top.png' },
-            { key: 'pipeBottom', src: 'assets/images/pipe-bottom.png' },
-            { key: 'background', src: 'assets/images/background.png' }
+            { key: 'bird', srcs: ['assets/images/bird.png', 'assets/images/bird.svg'] },
+            { key: 'pipeTop', srcs: ['assets/images/pipe-top.png', 'assets/images/pipe-top.svg'] },
+            { key: 'pipeBottom', srcs: ['assets/images/pipe-bottom.png', 'assets/images/pipe-bottom.svg'] },
+            { key: 'background', srcs: ['assets/images/background.png', 'assets/images/background.svg'] }
         ];
 
         let loadedCount = 0;
         const totalImages = imagesToLoad.length;
 
         imagesToLoad.forEach(imgData => {
-            const img = new Image();
-            img.onload = () => {
-                this[imgData.key] = img;
-                loadedCount++;
-                if (loadedCount === totalImages) {
-                    this.imagesLoaded = true;
+            const tryLoadImage = (srcIndex = 0) => {
+                if (srcIndex >= imgData.srcs.length) {
+                    // No more sources to try
+                    loadedCount++;
+                    if (loadedCount === totalImages) {
+                        console.log('Using default graphics (add custom images to assets/images/)');
+                    }
+                    return;
                 }
+
+                const img = new Image();
+                img.onload = () => {
+                    this[imgData.key] = img;
+                    loadedCount++;
+                    if (loadedCount === totalImages) {
+                        this.imagesLoaded = true;
+                    }
+                };
+                img.onerror = () => {
+                    // Try next format
+                    tryLoadImage(srcIndex + 1);
+                };
+                img.src = imgData.srcs[srcIndex];
             };
-            img.onerror = () => {
-                loadedCount++;
-                // If image fails to load, we'll use canvas drawing
-                if (loadedCount === totalImages) {
-                    console.log('Using default graphics (add custom images to assets/images/)');
-                }
-            };
-            img.src = imgData.src;
+
+            tryLoadImage();
         });
     }
 };
