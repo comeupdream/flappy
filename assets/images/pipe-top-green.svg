@@ -1,0 +1,29 @@
+<svg width="70" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="greenPipeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#34d399;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#34d399;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="greenCapGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#047857;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#047857;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Pipe body (GREEN) -->
+  <rect x="5" y="0" width="60" height="480" fill="url(#greenPipeGradient)" stroke="#065f46" stroke-width="2"/>
+
+  <!-- Highlight -->
+  <rect x="12" y="0" width="10" height="480" fill="rgba(255,255,255,0.25)"/>
+
+  <!-- Shadow -->
+  <rect x="55" y="0" width="8" height="480" fill="rgba(0,0,0,0.2)"/>
+
+  <!-- Pipe cap at bottom -->
+  <rect x="0" y="480" width="70" height="20" fill="url(#greenCapGradient)" stroke="#065f46" stroke-width="2"/>
+  <rect x="5" y="480" width="12" height="20" fill="rgba(255,255,255,0.25)"/>
+  <rect x="60" y="480" width="8" height="20" fill="rgba(0,0,0,0.25)"/>
+</svg>

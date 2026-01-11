@@ -28,23 +28,31 @@ const config = {
     pipeSpacing: 250,
     birdSize: 68,        // Visual size of the bird
     birdHitboxSize: 30,  // Collision detection size (smaller to match visible area)
-    pipeWidth: 60
+    pipeWidth: 70        // Updated to match new pipe SVG width
 };
 
 // Asset manager
 const assets = {
     bird: null,
-    pipeTop: null,
-    pipeBottom: null,
     background: null,
+    // Multiple pipe color variations
+    pipes: {
+        pink: { top: null, bottom: null },
+        purple: { top: null, bottom: null },
+        green: { top: null, bottom: null }
+    },
     imagesLoaded: false,
 
     load() {
         // Attempt to load custom images (try PNG, JPG, and SVG)
         const imagesToLoad = [
             { key: 'bird', srcs: ['assets/images/bird.png', 'assets/images/bird.svg'] },
-            { key: 'pipeTop', srcs: ['assets/images/pipe-top.png', 'assets/images/pipe-top.svg'] },
-            { key: 'pipeBottom', srcs: ['assets/images/pipe-bottom.png', 'assets/images/pipe-bottom.svg'] },
+            { key: 'pipeTopPink', srcs: ['assets/images/pipe-top-pink.svg'] },
+            { key: 'pipeBottomPink', srcs: ['assets/images/pipe-bottom-pink.svg'] },
+            { key: 'pipeTopPurple', srcs: ['assets/images/pipe-top-purple.svg'] },
+            { key: 'pipeBottomPurple', srcs: ['assets/images/pipe-bottom-purple.svg'] },
+            { key: 'pipeTopGreen', srcs: ['assets/images/pipe-top-green.svg'] },
+            { key: 'pipeBottomGreen', srcs: ['assets/images/pipe-bottom-green.svg'] },
             { key: 'background', srcs: ['assets/images/background.png', 'assets/images/background.jpg', 'assets/images/background.jpeg', 'assets/images/background.svg'] }
         ];
 
@@ -64,7 +72,15 @@ const assets = {
 
                 const img = new Image();
                 img.onload = () => {
-                    this[imgData.key] = img;
+                    // Map pipe images to their color groups
+                    if (imgData.key === 'pipeTopPink') this.pipes.pink.top = img;
+                    else if (imgData.key === 'pipeBottomPink') this.pipes.pink.bottom = img;
+                    else if (imgData.key === 'pipeTopPurple') this.pipes.purple.top = img;
+                    else if (imgData.key === 'pipeBottomPurple') this.pipes.purple.bottom = img;
+                    else if (imgData.key === 'pipeTopGreen') this.pipes.green.top = img;
+                    else if (imgData.key === 'pipeBottomGreen') this.pipes.green.bottom = img;
+                    else this[imgData.key] = img;
+
                     loadedCount++;
                     if (loadedCount === totalImages) {
                         this.imagesLoaded = true;
@@ -201,11 +217,16 @@ function createPipe() {
     const maxHeight = canvas.height - config.pipeGap - minHeight;
     const topHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
 
+    // Randomly select pipe color
+    const colors = ['pink', 'purple', 'green'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
     pipes.push({
         x: canvas.width,
         topHeight: topHeight,
         bottomY: topHeight + config.pipeGap,
-        scored: false
+        scored: false,
+        color: color
     });
 }
 
@@ -244,17 +265,20 @@ function updatePipes() {
 
 function drawPipes() {
     pipes.forEach(pipe => {
-        if (assets.pipeTop && assets.pipeBottom && assets.imagesLoaded) {
-            // Draw custom pipe images
+        // Get the pipe images for this pipe's color
+        const pipeColor = assets.pipes[pipe.color];
+
+        if (pipeColor && pipeColor.top && pipeColor.bottom && assets.imagesLoaded) {
+            // Draw colored pipe images
             ctx.drawImage(
-                assets.pipeTop,
+                pipeColor.top,
                 pipe.x,
-                pipe.topHeight - assets.pipeTop.height,
+                pipe.topHeight - pipeColor.top.height,
                 config.pipeWidth,
-                assets.pipeTop.height
+                pipeColor.top.height
             );
             ctx.drawImage(
-                assets.pipeBottom,
+                pipeColor.bottom,
                 pipe.x,
                 pipe.bottomY,
                 config.pipeWidth,
