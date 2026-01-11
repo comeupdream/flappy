@@ -5,11 +5,11 @@ const ctx = canvas.getContext('2d');
 
 // Game configuration
 const config = {
-    gravity: 0.5,
-    flapStrength: -9,
-    pipeSpeed: 2,
-    pipeGap: 150,
-    pipeSpacing: 220,
+    gravity: 0.3,
+    flapStrength: -6.5,
+    pipeSpeed: 1.5,
+    pipeGap: 180,
+    pipeSpacing: 250,
     birdSize: 34,
     pipeWidth: 60
 };
