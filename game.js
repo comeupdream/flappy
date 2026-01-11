@@ -3,6 +3,22 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+// Background music setup
+const backgroundMusic = new Audio('assets/sounds/background-music.mp3');
+backgroundMusic.loop = true;
+backgroundMusic.volume = 0.5; // 50% volume - adjust as needed
+
+// Start music on first user interaction
+let musicStarted = false;
+function startMusic() {
+    if (!musicStarted) {
+        backgroundMusic.play().catch(err => {
+            console.log('Music autoplay prevented. Will start on first click.');
+        });
+        musicStarted = true;
+    }
+}
+
 // Game configuration
 const config = {
     gravity: 0.045,
@@ -88,6 +104,9 @@ const bird = {
     },
 
     flap() {
+        // Start background music on first interaction
+        startMusic();
+
         if (gameState.current === 'start') {
             gameState.current = 'playing';
             document.getElementById('startScreen').classList.add('hidden');
